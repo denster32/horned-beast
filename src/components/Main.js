@@ -1,17 +1,30 @@
 import React from 'react';
 import HornedBeast from './HornedBeast';
-import data from '../data/data.json';
 import './Main.css'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
-class Main extends React.Component{
-  render(){
-    return(
+class Main extends React.Component {
+  render() {
+    return (
       <>
-      <main>
-        {data.map((hornedBeast) => {
-          return <HornedBeast title={hornedBeast.title} image_url={hornedBeast.image_url} description={hornedBeast.description} keyword={hornedBeast.keyword}/>
-        })}
-      </main>
+        <Container>
+          <Row xs={1} sm={2} md={3} lg={4}>
+            {this.props.beastData.map((hornedBeast, index) => {
+              return (
+                <HornedBeast
+                  title={hornedBeast.title}
+                  image_url={hornedBeast.image_url}
+                  description={hornedBeast.description}
+                  keyword={hornedBeast.keyword}
+                  key={index}
+                  display={this.props.handleOpenModal}
+                />
+              )
+            })}
+          </Row>
+        </Container>
+
       </>
     )
   }
